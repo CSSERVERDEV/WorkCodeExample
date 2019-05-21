@@ -35,7 +35,7 @@ public class GITHUBLoginApater {
 
     public static void main(String[] args) throws Exception {
 
-        simulateLogin("hlloaccp@live.cn", "2ws_x#SEDC"); // 模拟登陆github的用户名和密码
+        simulateLogin("hlloaccp@live.cn", ""); // 模拟登陆github的用户名和密码
 
     }
 
