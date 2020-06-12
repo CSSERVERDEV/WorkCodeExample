@@ -2,7 +2,7 @@ package data.platform.message.api.cfg;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "Example")
+@ConfigurationProperties(prefix = "example")
 public class ExampleConfigProperties {
     private String name;
 
