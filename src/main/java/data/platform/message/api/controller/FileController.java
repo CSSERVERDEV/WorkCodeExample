@@ -1,5 +1,6 @@
 package data.platform.message.api.controller;
 
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
 
-
+@Api("文件管理")
 @Controller
 public class FileController {
 
