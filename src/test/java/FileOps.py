@@ -3,10 +3,16 @@
 import os
 import re
 import sys
+
 '''
+批量修改文件夹下文件名称，文件命名:原文件名称+文件夹名称,第一级根据传入的目标文件夹名称命名
 文件传参执行如下
-cmd 执行 python G:\WorkCodeExample\src\test\java\FileOps.py G://WorkCodeExample//src//test//java//textfile
-默认main python G:\WorkCodeExample\src\test\java\FileOps.py
+cmd 执行 python G:\WorkCodeExample\src\test\java\FileOps.py G://WorkCodeExample//src//test//java//textfile 
+命令说明：
+python 固定根目录
+G:\WorkCodeExample\src\test\java\FileOps.py 脚本
+G://WorkCodeExample//src//test//java//textfile 目标文件夹路径
+textfile 一级文件更新的名称
 '''
 class changeFilename:
     def __init__(self,sourcePath):
@@ -33,20 +39,21 @@ class changeFilename:
         # # 名称变量
         # # num = 1
         #TODO当前文件放前面，文件夹放后面
-        num=0;
+        sortFileList = []
         for fileName in fileList:
             if os.path.isdir(os.path.join(self.path, fileName)):
-                num=5
+                sortFileList.append(FolderInfo(fileName, 1))
             if os.path.isfile(os.path.join(self.path, fileName)):
-                num=1
+                sortFileList.append(FolderInfo(fileName, 5))#文件排前面防止递归路径错乱无法替换文件
 
+        sortFileList.sort(key=lambda x: x.orderNo, reverse=True) #利用lambda表达式对单个属性进行排序
         # 遍历文件夹中所有文件
-        for fileName in fileList:
+        for fileName in sortFileList:
             try:
-                file_path = os.path.join(self.path, fileName)  # 获取绝对路径
+                file_path = os.path.join(self.path, fileName.name)  # 获取绝对路径
                 if os.path.isdir(file_path):  # 判断是否是文件夹
                     self.path=file_path
-                    folderName=fileName#子文件夹名称
+                    folderName=fileName.name#子文件夹名称
                     changeFilename.update(self,folderName)  # 如果是文件夹，就递归调用自己;
                 else:
                     extension_name = os.path.splitext(file_path)  # 将文件的绝对路径中的后缀名分离出来
@@ -78,43 +85,15 @@ class changeFilename:
         # print("旧文件：" + str(os.listdir(self.path)))
 
 
-# def rename_file(file_dir):
-#     for root, dirs, files in os.walk(file_dir):
-#         print(1,root) #当前目录路径
-#         print(2,dirs) #当前路径下所有子目录list
-#         print(3,files) #当前路径下所有非目录子文件 list
-#         print("")
-#
-#         # 1、先处理当前目录下的文件
-#         for file_name in files:
-#             if "[www.17zixueba.com]" in file_name:
-#                 old_file_path = root + "\\" + file_name
-#                 new_file_name = file_name.replace('[www.17zixueba.com]', '')
-#                 new_file_path = root + "\\" + new_file_name
-#                 print('old_file_path:',old_file_path)
-#                 print('new_file_path:',new_file_path)
-#                 os.rename(old_file_path, new_file_path)
-#
-#         # 2、递归处理目录下的子目录及子目录中的文件
-#         for dir_name in dirs:
-#             old_dir_path = root + "\\" + dir_name
-#
-#             if "[www.17zixueba.com]" in dir_name:
-#                 new_dir_name = dir_name.replace('[www.17zixueba.com]', '')
-#                 new_dir_path = root + "\\" + new_dir_name
-#                 print("old_dir_path:",old_dir_path)
-#                 print("new_dir_path:",new_dir_path)
-#                 os.rename(old_dir_path, new_dir_path)
-#                 dir_path = new_dir_path
-#             else:
-#                 dir_path = old_dir_path
-#
-#
-#             rename_file(dir_path)
-#
-# path = "I:\技术\教程\Python\数据分析与挖掘\python数据分析全套"
-# # path = "E:\python数据分析全套"
-# rename_file(path)
+class FolderInfo(object):
+    def __init__(self, name, orderNo):
+        self.name = name
+        self.orderNo = orderNo
+
+    def __str__(self):
+        return '(%s, %s)' % (self.name,  self.orderNo)
+
+    __repr__ = __str__
 
 if __name__ == "__main__":
     sourceFilePath = "G://WorkCodeExample//src//test//java//textfile"    # 目标路径
