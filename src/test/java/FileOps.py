@@ -6,13 +6,14 @@ import sys
 
 '''
 批量修改文件夹下文件名称，文件命名:原文件名称+文件夹名称,第一级根据传入的目标文件夹名称命名
-文件传参执行如下
-cmd 执行 python G:\WorkCodeExample\src\test\java\FileOps.py G://WorkCodeExample//src//test//java//textfile textfile
+使用说明：打开cmd 执行 python G:\WorkCodeExample\src\test\java\FileOps.py G://WorkCodeExample//src//test//java//textfile textfile
 命令说明：
-python 固定根目录
-G:\WorkCodeExample\src\test\java\FileOps.py 脚本
+python 固定命令
+G:\WorkCodeExample\src\test\java\FileOps.py 脚本路径
 G://WorkCodeExample//src//test//java//textfile 目标文件夹路径
 textfile 一级文件更新的名称
+
+有main情况执行python G:\WorkCodeExample\src\test\java\FileOps.py
 '''
 class changeFilename:
     def __init__(self,sourcePath):
