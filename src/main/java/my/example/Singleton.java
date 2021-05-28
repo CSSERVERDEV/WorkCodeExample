@@ -1,5 +1,4 @@
 package my.example;
-
 /**
  * 单例三种写法,
  *

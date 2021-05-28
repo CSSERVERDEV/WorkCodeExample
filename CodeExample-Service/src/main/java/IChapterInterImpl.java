@@ -37,12 +37,12 @@ public class IChapterInterImpl implements IChapterInter {
         try {
             String result = crawl(url);
             Document doc = Jsoup.parse(result);
-            Elements as = doc.select("#list dd a");
+            Elements as = doc.select("#listmain dl dd a");
             List<Chapter> chapters = new ArrayList<>();
             for (Element a : as) {
                 Chapter chapter = new Chapter();
                 chapter.setTitle(a.text());
-                chapter.setUrl("http://www.biqiuge.com" + a.attr("href"));
+                chapter.setUrl("http://www.biqiuge8.com" + a.attr("href"));
                 chapters.add(chapter);
             }
             return chapters;

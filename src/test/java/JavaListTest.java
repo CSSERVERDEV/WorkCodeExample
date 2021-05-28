@@ -1,7 +1,11 @@
 //import com.sengled.cloud.data.platform.model.po.DeviceOnlineHoursBean;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static java.util.stream.Collectors.toList;
 
@@ -14,6 +18,8 @@ import static java.util.stream.Collectors.toList;
  * @date 2018/12/28 10:38
  **/
 public class JavaListTest {
+    private static short node=2;
+    private static final short MASK_LOW_7_BIT = 0x7F;
     public static void main(String[] args) {
         List<String> list1 = new ArrayList<String>();
         list1.add("2018-12-01");
@@ -77,5 +83,27 @@ public class JavaListTest {
 //        System.out.println("---原来的List2---");
 //        list2.parallelStream().forEachOrdered(System.out :: println);
 
+        //有序 可重复 连续内存 动态数值copy 扩展
+
+
+        //set treeset 无序 不可重复
+
+//        Vector<String> vector=new Vector();
+//        vector.add("sdfsfsf");
+//        vector.add("二维数组");
+
+//            List<String> namesList=new ArrayList<>();
+//        namesList.add("dssg");
+
+
+//        CopyOnWriteArrayList<String> namessList=new CopyOnWriteArrayList<>();
+//        namessList.add("dssg");
+//            for (String name : namessList) {
+//                if (name.equals("dssg")) {
+//                    namessList.remove(name);
+//                }
+//            }
+
+        System.out.println(MASK_LOW_7_BIT);
     }
 }

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * Created by ti on 2017/12/25.
  */
 @Service
-@PropertySource(value = {"file:/etc/sengled/sengled.properties"})
+@PropertySource(value = {"file:/etc/sdre/sdre.properties"})
 public class PushTopicCallbackService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
